@@ -3,83 +3,663 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Educational Intervention Portfolio</title>
+    <title>Salvador Cabanilles — ALN Learning Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #3498db;
-            --bg: #f4f7f6;
-            --text: #333;
+            --cream: #FAF7F2;
+            --warm-white: #FFFDF9;
+            --ink: #1A1410;
+            --ink-mid: #4A3F35;
+            --ink-light: #8C7B6E;
+            --sage: #5E7B60;
+            --sage-light: #EAF0E8;
+            --terracotta: #C06B3A;
+            --terracotta-light: #F5EBE3;
+            --sky: #4A7BA0;
+            --sky-light: #E5EFF5;
+            --gold: #B8860B;
+            --gold-light: #FAF3DC;
+            --border: rgba(26,20,16,0.1);
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg); margin: 0; }
-        header { background: var(--primary); color: white; padding: 2rem 1rem; text-align: center; }
-        nav { background: #fff; padding: 1rem; text-align: center; position: sticky; top: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        nav a { margin: 0 15px; text-decoration: none; color: var(--primary); font-weight: bold; }
-        .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
-        .card { background: white; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        h2 { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-        .tag { background: #e1f0fa; color: #3498db; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; }
-        footer { text-align: center; padding: 2rem; color: #777; font-size: 0.9rem; }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            line-height: 1.7;
+        }
+
+        /* ── HEADER ── */
+        header {
+            background: var(--ink);
+            color: var(--warm-white);
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 2rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: end;
+            gap: 2rem;
+        }
+
+        .header-eyebrow {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 1.2rem;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 600;
+            line-height: 1.12;
+            letter-spacing: -0.01em;
+            margin-bottom: 1rem;
+        }
+
+        header h1 span {
+            color: #C8A97A;
+        }
+
+        header p {
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.65);
+            max-width: 480px;
+        }
+
+        .header-badge-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            align-items: flex-end;
+        }
+
+        .header-badge {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.7);
+            padding: 0.35rem 0.9rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+
+        /* Decorative rule */
+        .header-rule {
+            height: 3px;
+            background: linear-gradient(90deg, var(--terracotta) 0%, var(--gold) 40%, var(--sage) 100%);
+        }
+
+        /* ── NAV ── */
+        nav {
+            background: var(--warm-white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem 1.4rem;
+            text-decoration: none;
+            color: var(--ink-mid);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--terracotta);
+            border-bottom-color: var(--terracotta);
+        }
+
+        /* ── LAYOUT ── */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-child { border-bottom: none; }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ink-light);
+            margin-bottom: 0.6rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        /* ── INTRO ── */
+        #intro {
+            padding: 4rem 0;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            font-weight: 600;
+            line-height: 1.35;
+            margin-bottom: 1rem;
+            color: var(--ink);
+        }
+
+        .intro-text p {
+            color: var(--ink-mid);
+            font-weight: 300;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .pill {
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.78rem;
+            font-weight: 500;
+            border: 1px solid;
+        }
+
+        .pill-sage { background: var(--sage-light); color: var(--sage); border-color: #C4D6C3; }
+        .pill-terra { background: var(--terracotta-light); color: var(--terracotta); border-color: #E4C0A8; }
+        .pill-sky { background: var(--sky-light); color: var(--sky); border-color: #C0D5E6; }
+        .pill-gold { background: var(--gold-light); color: var(--gold); border-color: #E4D08A; }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .stat-card {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .stat-card .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-card .label {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            font-weight: 400;
+        }
+
+        /* ── PROJECT CARD ── */
+        .project-card {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.8rem;
+            align-items: start;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 8px 32px rgba(26,20,16,0.08);
+            transform: translateY(-2px);
+        }
+
+        .project-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .icon-terra { background: var(--terracotta-light); }
+        .icon-sage { background: var(--sage-light); }
+        .icon-sky { background: var(--sky-light); }
+        .icon-gold { background: var(--gold-light); }
+
+        .project-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.4rem;
+        }
+
+        .project-card p {
+            color: var(--ink-mid);
+            font-size: 0.9rem;
+            font-weight: 300;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.8rem;
+        }
+
+        .project-detail {
+            background: var(--cream);
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            margin-top: 1rem;
+            border-left: 3px solid var(--terracotta);
+        }
+
+        .project-detail p {
+            font-size: 0.85rem;
+            color: var(--ink-mid);
+            margin: 0;
+        }
+
+        .project-detail strong {
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        /* ── PROFILES ── */
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .profile-card {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .profile-card:hover {
+            box-shadow: 0 8px 32px rgba(26,20,16,0.08);
+            transform: translateY(-2px);
+        }
+
+        .profile-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .av-terra { background: var(--terracotta-light); color: var(--terracotta); }
+        .av-sky { background: var(--sky-light); color: var(--sky); }
+        .av-sage { background: var(--sage-light); color: var(--sage); }
+
+        .profile-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.2rem;
+        }
+
+        .profile-year {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            font-weight: 400;
+            margin-bottom: 0.8rem;
+        }
+
+        .profile-card p {
+            font-size: 0.88rem;
+            color: var(--ink-mid);
+            font-weight: 300;
+            margin-bottom: 0.6rem;
+        }
+
+        .profile-tools {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.78rem;
+            color: var(--ink-light);
+        }
+
+        .profile-tools span {
+            color: var(--ink-mid);
+        }
+
+        /* ── RESOURCES ── */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .resource-card:hover {
+            box-shadow: 0 8px 32px rgba(26,20,16,0.08);
+            transform: translateY(-2px);
+        }
+
+        .resource-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .resource-card h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 0.4rem;
+        }
+
+        .resource-card p {
+            font-size: 0.87rem;
+            color: var(--ink-mid);
+            font-weight: 300;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--ink);
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 2.5rem 1rem;
+            font-size: 0.82rem;
+            font-weight: 300;
+        }
+
+        footer span { color: rgba(255,255,255,0.6); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .header-inner { grid-template-columns: 1fr; }
+            .header-badge-group { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+            .intro-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .profiles-grid { grid-template-columns: 1fr; }
+            .resources-grid { grid-template-columns: 1fr; }
+            .project-card { grid-template-columns: 1fr; }
+            .project-icon { display: none; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Educational Intervention Portfolio</h1>
-    <p>Specialized Support for EYFS, KS1, and ALN Students</p>
+    <div class="header-rule"></div>
+    <div class="header-inner">
+        <div>
+            <p class="header-eyebrow">Educational Intervention Portfolio</p>
+            <h1>Supporting learners<br>who need it <span>most.</span></h1>
+            <p>ALN Learning Assistant at Taipei European School — bridging occupational therapy and inclusive education across EYFS, KS1, and beyond.</p>
+        </div>
+        <div class="header-badge-group">
+            <span class="header-badge">OT Background</span>
+            <span class="header-badge">MSc Special Education</span>
+            <span class="header-badge">EYFS · KS1 · ALN</span>
+            <span class="header-badge">EN · FR · ES</span>
+        </div>
+    </div>
+    <div class="header-rule"></div>
 </header>
 
 <nav>
-    <a href="#projects">Projects</a>
-    <a href="#profiles">Student Case Studies</a>
-    <a href="#resources">Resources</a>
+    <div class="nav-inner">
+        <a href="#intro">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#profiles">Students</a>
+        <a href="#resources">Resources</a>
+    </div>
 </nav>
 
 <div class="container">
-    
+
+    <section id="intro">
+        <div class="intro-grid">
+            <div class="intro-text">
+                <h2>Rooted in therapy.<br>Applied in education.</h2>
+                <p>With a background in occupational therapy and special education, I design interventions that meet children where they are — not where we expect them to be.</p>
+                <p>My practice draws on evidence-based frameworks including DIR/Floortime, the Incredible 5 Point Scale, and sensory integration to support children with a wide range of additional learning needs.</p>
+                <div class="pill-row">
+                    <span class="pill pill-terra">DIR Floortime</span>
+                    <span class="pill pill-sage">Sensory Integration</span>
+                    <span class="pill pill-sky">Fine Motor Skills</span>
+                    <span class="pill pill-gold">Emotional Regulation</span>
+                    <span class="pill pill-terra">Executive Function</span>
+                    <span class="pill pill-sage">Social Communication</span>
+                </div>
+            </div>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="num">5+</div>
+                    <div class="label">Countries worked across</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">10+</div>
+                    <div class="label">Years in clinical & educational settings</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">3</div>
+                    <div class="label">Languages: EN · FR · ES</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">MSc</div>
+                    <div class="label">Special Education</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="projects">
-        <h2>Key Projects</h2>
-        <div class="card">
-            <h3>Beat Busters (BB Groups) <span class="tag">EYFS / KS1</span></h3>
-            <p>A music and games-based intervention designed to boost engagement and reduce stigma through group dynamics.</p>
-            <ul>
-                <li><strong>Structure:</strong> Warm-up → Active Session → Calm → Surprise Activity.</li>
-                <li><strong>Focus:</strong> Motor coordination and social communication.</li>
-            </ul>
+        <div class="section-header">
+            <p class="section-label">Work in practice</p>
+            <h2>Key Projects</h2>
+        </div>
+
+        <div class="project-card">
+            <div class="project-icon icon-terra">🥁</div>
+            <div>
+                <h3>Beat Busters (BB Groups)</h3>
+                <div class="project-meta">
+                    <span class="pill pill-terra">EYFS / KS1</span>
+                    <span class="pill pill-sage">Group Intervention</span>
+                    <span class="pill pill-sky">Motor Coordination</span>
+                </div>
+                <p style="margin-top:0.8rem;">A music and games-based group intervention designed to boost engagement and reduce stigma through positive group dynamics. Structured to move from energy to calm, every session ends with a surprise.</p>
+                <div class="project-detail">
+                    <p><strong>Session arc:</strong> Warm-up → Active Session → Calm-down → Surprise Activity</p>
+                    <p style="margin-top:0.4rem;"><strong>Focus areas:</strong> Motor coordination, social communication, turn-taking, emotional co-regulation</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-icon icon-sage">🧠</div>
+            <div>
+                <h3>Sensory Motor Groups</h3>
+                <div class="project-meta">
+                    <span class="pill pill-sage">Sensory Integration</span>
+                    <span class="pill pill-sky">Planning & Delivery</span>
+                </div>
+                <p style="margin-top:0.8rem;">Structured sensory motor group sessions designed to address proprioceptive and vestibular needs in young learners, with session plans adapted to individual sensory profiles.</p>
+                <div class="project-detail">
+                    <p><strong>Approach:</strong> Evidence-based sensory diet activities embedded in group play contexts to normalise support and build peer connection.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-icon icon-sky">✏️</div>
+            <div>
+                <h3>Handwriting Screener Programme</h3>
+                <div class="project-meta">
+                    <span class="pill pill-sky">Fine Motor</span>
+                    <span class="pill pill-gold">Data-Driven</span>
+                </div>
+                <p style="margin-top:0.8rem;">A classroom-level screening process using the Handwriting Without Tears framework to identify students requiring fine motor support, with follow-up intervention plans.</p>
+                <div class="project-detail">
+                    <p><strong>Outcome:</strong> Targeted referral pathways and classroom strategy recommendations for teachers.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="profiles">
-        <h2>Student Profiles & Progress</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Derek (Reception)</h3>
-                <p>Focused on emotional regulation and social interaction using the <strong>DIR Floortime</strong> approach.</p>
-                <p><em>Key Tools:</em> 5-Point Scale, Bandido, Bazar Bizarre.</p>
+        <div class="section-header">
+            <p class="section-label">Individual support</p>
+            <h2>Student Case Studies</h2>
+        </div>
+
+        <div class="profiles-grid">
+            <div class="profile-card">
+                <div class="profile-avatar av-terra">D</div>
+                <h3>Derek</h3>
+                <p class="profile-year">Reception year</p>
+                <p>Focused on emotional regulation and building social interaction through the DIR/Floortime approach. Sessions centre on child-led play to develop shared attention and reciprocal communication.</p>
+                <div class="profile-tools">
+                    Tools used: <span>5-Point Scale · Bandido · Bazar Bizarre · Floortime diary</span>
+                </div>
             </div>
-            <div class="card">
-                <h3>Max (ALN Support)</h3>
-                <p>Addressing challenges with <strong>Dysgraphia</strong> and emotional regulation.</p>
-                <p><em>Strategy:</em> Executive function enhancement and residential trip preparation.</p>
+            <div class="profile-card">
+                <div class="profile-avatar av-sky">M</div>
+                <h3>Max</h3>
+                <p class="profile-year">ALN Support</p>
+                <p>Addressing dysgraphia and executive function challenges. Intervention combines adapted writing tools, task sequencing support, and residential trip preparation to build independence and confidence.</p>
+                <div class="profile-tools">
+                    Focus: <span>Executive function · Emotional regulation · Transition planning</span>
+                </div>
             </div>
-            <div class="card">
+            <div class="profile-card">
+                <div class="profile-avatar av-sage">O</div>
                 <h3>Oliver</h3>
-                <p>Music-based participation focusing on percussion and inclusive classroom "tweaks".</p>
+                <p class="profile-year">Inclusive Music Participation</p>
+                <p>Supporting full participation in music education through percussion-based engagement and discreet classroom adjustments. Success measured through increased initiation and peer interaction.</p>
+                <div class="profile-tools">
+                    Strategy: <span>Classroom "tweaks" · Video modelling · Percussion sessions</span>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="resources">
-        <h2>Instructional Materials</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Maths: Measurements</h3>
-                <p>Interactive lessons on Liters and Milliliters (ml) for primary students.</p>
+        <div class="section-header">
+            <p class="section-label">Teaching materials</p>
+            <h2>Instructional Resources</h2>
+        </div>
+
+        <div class="resources-grid">
+            <div class="resource-card">
+                <div class="resource-icon icon-terra">📐</div>
+                <div>
+                    <h3>Maths: Measurement & Volume</h3>
+                    <p>Interactive lessons on litres and millilitres for Year 2 primary students. Designed around hands-on estimation and real-world pouring activities to build conceptual understanding before formal notation.</p>
+                </div>
             </div>
-            <div class="card">
-                <h3>Handwriting Screener</h3>
-                <p>Data-driven insights using the <strong>Handwriting Without Tears</strong> framework.</p>
+            <div class="resource-card">
+                <div class="resource-icon icon-sage">✍️</div>
+                <div>
+                    <h3>Handwriting Screener</h3>
+                    <p>Data-driven classroom screening using the Handwriting Without Tears framework. Provides teachers with actionable profiles and informs referral decisions for occupational therapy support.</p>
+                </div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-icon icon-sky">🎯</div>
+                <div>
+                    <h3>Incredible 5 Point Scale</h3>
+                    <p>Personalised emotional regulation visual supports adapted for individual students. Used to build self-awareness of emotional intensity and guide the use of coping strategies.</p>
+                </div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-icon icon-gold">🎵</div>
+                <div>
+                    <h3>DIR/Floortime Resource Pack</h3>
+                    <p>A curated set of materials explaining the DIR/Floortime approach for classroom teachers and families, including video examples and strategy cards for embedding principles into daily routines.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -87,7 +667,8 @@
 </div>
 
 <footer>
-    <p>&copy; 2026 Educational Portfolio | Built for GitHub Pages</p>
+    <p><span>Salvador Cabanilles</span> · ALN Learning Assistant · Taipei European School · 2026</p>
+    <p style="margin-top:0.4rem;">Built for GitHub Pages</p>
 </footer>
 
 </body>
